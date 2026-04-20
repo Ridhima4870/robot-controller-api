@@ -2,13 +2,6 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/Ridhima4870/robot-controller-api.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 dir('robot-controller-api') {
