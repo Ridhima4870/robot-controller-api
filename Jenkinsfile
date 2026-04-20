@@ -24,7 +24,7 @@ pipeline {
             steps {
                 dir('robot-controller-api') {
                     bat 'npm install -g newman'
-                    bat 'newman run "Robot Controller API.postman_collection.json" -e "4.3D robot api.postman_environment.json" -r cli,html,json --reporter-html-export newman-report.html --reporter-json-export results.json'
+                    bat 'npx newman run "Robot Controller API.postman_collection.json" -e "4.3D robot api.postman_environment.json" -r cli,html,json --reporter-html-export newman-report.html --reporter-json-export results.json'
                 }
             }
         }
