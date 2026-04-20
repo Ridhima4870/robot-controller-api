@@ -1,0 +1,62 @@
+GetRobotCommands:
+SELECT r.id, r.createddate, r.description, r.ismovecommand, r.modifieddate, r."Name"
+FROM robotcommand AS r
+
+GetMoveCommandsOnly:
+SELECT r.id, r.createddate, r.description, r.ismovecommand, r.modifieddate, r."Name"
+FROM robotcommand AS r
+WHERE r.ismovecommand = TRUE
+
+GetRobotCommandById:
+SELECT r.id, r.createddate, r.description, r.ismovecommand, r.modifieddate, r."Name"
+FROM robotcommand AS r
+WHERE r.id = @id
+
+AddRobotCommand:
+INSERT INTO robotcommand (name, description, ismovecommand, createddate, modifieddate)
+VALUES (@name, @description, @ismovecommand, @createddate, @modifieddate)
+RETURNING id
+
+UpdateRobotCommand:
+UPDATE robotcommand
+SET name = @name,
+    description = @description,
+    ismovecommand = @ismovecommand,
+    modifieddate = @modifieddate
+WHERE id = @id
+
+DeleteRobotCommand:
+DELETE FROM robotcommand
+WHERE id = @id
+
+GetMaps:
+SELECT m.id, m.columns, m.createddate, m.description, m.modifieddate, m.name, m.rows
+FROM map AS m
+
+GetSquareMaps:
+SELECT m.id, m.columns, m.createddate, m.description, m.modifieddate, m.name, m.rows
+FROM map AS m
+WHERE m.rows = m.columns
+
+GetMapById:
+SELECT m.id, m.columns, m.createddate, m.description, m.modifieddate, m.name, m.rows
+FROM map AS m
+WHERE m.id = @id
+
+AddMap:
+INSERT INTO map (name, description, rows, columns, createddate, modifieddate)
+VALUES (@name, @description, @rows, @columns, @createddate, @modifieddate)
+RETURNING id
+
+UpdateMap:
+UPDATE map
+SET name = @name,
+    description = @description,
+    rows = @rows,
+    columns = @columns,
+    modifieddate = @modifieddate
+WHERE id = @id
+
+DeleteMap:
+DELETE FROM map
+WHERE id = @id
